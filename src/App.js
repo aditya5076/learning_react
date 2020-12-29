@@ -1,25 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import ResourceList from "./components/ResourceList";
+import UsersList from "./components/UsersList";
 
-function App() {
+const App = () => {
+  const [resource, setResource] = useState("posts");
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div>
+        <h3>Users</h3>
+        <UsersList />
+        <button onClick={() => setResource("posts")}>posts</button>
+        <button onClick={() => setResource("todos")}>todos</button>
+        <ResourceList resource={resource} />
+      </div>
     </div>
   );
-}
+};
 
 export default App;
+
+// ******************************************************
+
+// CLASS BASED STATE IMPLEMENTATION
+
+// import React, { Component } from "react";
+
+// export default class App extends Component {
+//   state = { resources: "posts" };
+//   render() {
+//     return (
+//       <div>
+//         <div>
+//           <button onClick={() => this.setState({ resources: "posts" })}>
+//             posts
+//           </button>
+//           <button onClick={() => this.setState({ resources: "todos" })}>
+//             todos
+//           </button>
+//           {this.state.resources}
+//         </div>
+//       </div>
+//     );
+//   }
+// }
